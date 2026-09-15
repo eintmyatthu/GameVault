@@ -2,7 +2,7 @@ import SwiftUI
 import SwiftData
 
 @main
-struct GameVaultApp: App {
+struct EHMGameShelfApp: App {
     @State private var container: ModelContainer?
     @State private var storageError: String?
     var body: some Scene {
@@ -20,7 +20,7 @@ struct GameVaultApp: App {
     }
     private func openStorage() {
         do {
-            container = try ModelContainer(for: SavedGame.self)
+            container = try ModelContainer(for: SavedGame.self, JournalEntry.self)
             storageError = nil
         } catch {
             // Never replace a failed persistent store with a silently empty in-memory one.

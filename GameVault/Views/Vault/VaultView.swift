@@ -52,11 +52,11 @@ struct VaultView: View {
                     }
                 }
                 VStack(alignment: .leading, spacing: 12) {
-                    Label("About GameVault", systemImage: "gamecontroller.fill").font(.headline)
-                    Text("Discover your next adventure and build a library that's yours. Built with SwiftUI and SwiftData for an iOS final project.")
+                    Label("About EHMGameShelf", systemImage: "gamecontroller.fill").font(.headline)
+                    Text("Discover free-to-play adventures and build a backlog that's yours. Built with SwiftUI and SwiftData for an iOS final project.")
                         .font(.subheadline).foregroundStyle(.secondary)
                     Text("Your collection stays on this device. No account required.").font(.caption).foregroundStyle(.secondary)
-                    Link("Powered by RAWG ↗", destination: URL(string: "https://rawg.io")!).font(.subheadline.bold()).frame(minHeight: 44)
+                    Link("Powered by FreeToGame ↗", destination: URL(string: "https://www.freetogame.com")!).font(.subheadline.bold()).frame(minHeight: 44)
                 }.padding(20).background(VaultTheme.surface, in: RoundedRectangle(cornerRadius: 24))
             }.padding(20)
         }.background(VaultTheme.background).navigationTitle("My Vault").navigationBarTitleDisplayMode(.inline)

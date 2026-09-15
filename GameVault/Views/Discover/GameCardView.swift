@@ -6,7 +6,7 @@ struct GameCardView: View {
         VStack(alignment: .leading, spacing: 10) {
             GameArtwork(url: game.backgroundImage).frame(height: 145).clipShape(RoundedRectangle(cornerRadius: 16))
             Text(game.name).font(.headline).lineLimit(2).frame(height: 46, alignment: .topLeading)
-            Label(game.ratingText, systemImage: "star.fill").font(.caption.bold()).foregroundStyle(.orange)
+            Label(game.genre ?? "Free-to-play", systemImage: "tag.fill").font(.caption.bold()).foregroundStyle(VaultTheme.accent)
             Text(game.platformNames).font(.caption).foregroundStyle(.secondary).lineLimit(1)
         }.padding(12).frame(width: 220).background(VaultTheme.surface, in: RoundedRectangle(cornerRadius: 24))
             .accessibilityElement(children: .combine)

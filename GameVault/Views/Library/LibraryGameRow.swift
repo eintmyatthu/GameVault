@@ -11,13 +11,16 @@ struct LibraryGameRow: View {
                 Label(saved.status?.title ?? "Favorite", systemImage: saved.status?.symbol ?? "heart.fill")
                     .font(.caption.bold()).foregroundStyle(VaultTheme.accent)
                 if saved.isFavorite { Image(systemName: "heart.fill").foregroundStyle(.pink).accessibilityLabel("Favorite") }
+                if let rating = saved.personalRating {
+                    Label("\(rating)/5", systemImage: "star.fill").font(.caption).foregroundStyle(.orange)
+                }
                 Spacer()
                 Menu {
                     ForEach(LibraryStatus.allCases) { status in
                         Button(status.title, systemImage: status.symbol) { changeStatus(status) }
                     }
                     Divider()
-                    Button("Remove from Library", systemImage: "trash", role: .destructive, action: remove)
+                    Button("Remove from Backlog", systemImage: "trash", role: .destructive, action: remove)
                 } label: {
                     Image(systemName: "ellipsis").frame(width: 44, height: 44).contentShape(Rectangle())
                 }.accessibilityLabel("Manage \(saved.name)")

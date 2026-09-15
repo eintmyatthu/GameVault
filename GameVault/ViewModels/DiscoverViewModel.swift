@@ -4,12 +4,12 @@ import Observation
 @MainActor @Observable
 final class DiscoverViewModel {
     var popular: [Game] = []
-    var topRated: [Game] = []
-    var recent: [Game] = []
-    var genres: [NamedResource] = []
+    var newest: [Game] = []
+    var alphabetical: [Game] = []
+    let genres = GameCategory.common
     var isLoading = false
     var errorMessage: String?
-    private let service = RAWGService()
+    private let service = FreeToGameService()
 
     func load() async {
         guard !isLoading else { return }
@@ -17,13 +17,14 @@ final class DiscoverViewModel {
         errorMessage = nil
         defer { isLoading = false }
         do {
-            async let popularResult = service.popularGames()
-            async let topResult = service.topRatedGames()
-            async let recentResult = service.recentGames()
-            async let genreResult = service.genres()
-            let result = try await (popularResult, topResult, recentResult, genreResult)
+            async let popularResult = service.games(sort: .popularity)
+            async let newestResult = service.games(sort: .releaseDate)
+            async let alphabeticalResult = service.games(sort: .alphabetical)
+            let result = try await (popularResult, newestResult, alphabeticalResult)
             try Task.checkCancellation()
-            (popular, topRated, recent, genres) = result
+            popular = Array(result.0.prefix(15))
+            newest = Array(result.1.prefix(15))
+            alphabetical = Array(result.2.prefix(15))
         } catch is CancellationError {
         } catch { errorMessage = error.localizedDescription }
     }

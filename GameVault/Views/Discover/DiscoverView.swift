@@ -5,7 +5,7 @@ struct DiscoverView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 28) {
-                PageHeading(eyebrow: "GAMEVAULT", title: "Find your next\nadventure.", subtitle: "Great games. One place to keep them.")
+                PageHeading(eyebrow: "EHM GAMESHELF", title: "Find your next\nadventure.", subtitle: "Free-to-play games. One place to keep them.")
                     .padding(.horizontal, 20)
                 if model.isLoading && model.popular.isEmpty { LoadingView() }
                 if let error = model.errorMessage {
@@ -13,8 +13,8 @@ struct DiscoverView: View {
                 }
                 if !model.popular.isEmpty || (!model.isLoading && model.errorMessage == nil) {
                     GameSectionView(title: "🔥 Popular Games", games: model.popular)
-                    GameSectionView(title: "⭐ Top Rated", games: model.topRated)
-                    GameSectionView(title: "🆕 New Releases", games: model.recent)
+                    GameSectionView(title: "🆕 New Releases", games: model.newest)
+                    GameSectionView(title: "🔤 Browse A–Z", games: model.alphabetical)
                     VStack(alignment: .leading, spacing: 16) {
                         Text("🎮 Browse by Genre").font(.title2.bold())
                         LazyVGrid(columns: [GridItem(.adaptive(minimum: 140))], spacing: 12) {
@@ -29,7 +29,7 @@ struct DiscoverView: View {
                         }
                     }.padding(.horizontal, 20)
                 }
-                Link("Game data & artwork by RAWG", destination: URL(string: "https://rawg.io")!)
+                Link("Game data & artwork by FreeToGame", destination: URL(string: "https://www.freetogame.com")!)
                     .font(.caption).foregroundStyle(.secondary).frame(maxWidth: .infinity)
             }.padding(.bottom, 24)
         }.background(VaultTheme.background).navigationTitle("Discover").navigationBarTitleDisplayMode(.inline)

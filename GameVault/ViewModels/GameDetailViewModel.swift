@@ -10,7 +10,7 @@ final class GameDetailViewModel {
         isLoading = true
         errorMessage = nil
         defer { isLoading = false }
-        do { detail = try await RAWGService().detail(id: id) }
+        do { detail = try await FreeToGameService().detail(id: id) }
         catch is CancellationError { }
         catch { errorMessage = error.localizedDescription }
     }

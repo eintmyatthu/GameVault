@@ -1,28 +1,48 @@
 import Foundation
 
+struct GameScreenshot: Codable, Hashable, Identifiable {
+    let id: Int
+    let image: String
+}
+
+struct MinimumSystemRequirements: Codable, Hashable {
+    let os: String?
+    let processor: String?
+    let memory: String?
+    let graphics: String?
+    let storage: String?
+}
+
 struct GameDetail: Codable {
     let id: Int
-    let name: String
-    let backgroundImage: String?
-    let rating: Double?
-    let released: String?
-    let metacritic: Int?
-    let platforms: [GamePlatform]?
-    let genres: [NamedResource]?
-    let descriptionRaw: String?
-    let developers: [NamedResource]?
-    let publishers: [NamedResource]?
-    let esrbRating: NamedResource?
-    let website: String?
+    let title: String
+    let thumbnail: String?
+    let status: String?
+    let shortDescription: String?
+    let description: String?
+    let gameURL: String?
+    let genre: String?
+    let platform: String?
+    let publisher: String?
+    let developer: String?
+    let releaseDate: String?
+    let freeToGameProfileURL: String?
+    let minimumSystemRequirements: MinimumSystemRequirements?
+    let screenshots: [GameScreenshot]?
 
     var game: Game {
-        Game(id: id, name: name, backgroundImage: backgroundImage, rating: rating,
-             released: released, metacritic: metacritic, platforms: platforms, genres: genres)
+        Game(id: id, title: title, thumbnail: thumbnail, shortDescription: shortDescription,
+             gameURL: gameURL, genre: genre, platform: platform, publisher: publisher,
+             developer: developer, releaseDate: releaseDate,
+             freeToGameProfileURL: freeToGameProfileURL)
     }
+
     enum CodingKeys: String, CodingKey {
-        case id, name, rating, released, metacritic, platforms, genres, developers, publishers, website
-        case backgroundImage = "background_image"
-        case descriptionRaw = "description_raw"
-        case esrbRating = "esrb_rating"
+        case id, title, thumbnail, status, description, genre, platform, publisher, developer, screenshots
+        case shortDescription = "short_description"
+        case gameURL = "game_url"
+        case releaseDate = "release_date"
+        case freeToGameProfileURL = "freetogame_profile_url"
+        case minimumSystemRequirements = "minimum_system_requirements"
     }
 }

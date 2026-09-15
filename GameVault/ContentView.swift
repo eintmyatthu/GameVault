@@ -11,10 +11,10 @@ struct ContentView: View {
             }.tabItem { Label("Search", systemImage: "magnifyingglass") }
             NavigationStack {
                 LibraryView().navigationDestination(for: Game.self) { GameDetailView(game: $0) }
-            }.tabItem { Label("Library", systemImage: "square.stack.3d.up") }
+            }.tabItem { Label("Backlog", systemImage: "square.stack.3d.up") }
             NavigationStack {
-                VaultView().navigationDestination(for: Game.self) { GameDetailView(game: $0) }
-            }.tabItem { Label("My Vault", systemImage: "person.crop.circle") }
+                JournalView().navigationDestination(for: Game.self) { GameDetailView(game: $0) }
+            }.tabItem { Label("Journal", systemImage: "book.closed") }
         }.tint(VaultTheme.accent)
     }
 }

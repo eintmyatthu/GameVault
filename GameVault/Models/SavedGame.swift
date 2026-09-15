@@ -2,52 +2,72 @@ import Foundation
 import SwiftData
 
 enum LibraryStatus: String, CaseIterable, Identifiable {
-    case wishlist, playing, completed
+    case wantToPlay, playing, stopped
     var id: String { rawValue }
-    var title: String { rawValue.capitalized }
+    var title: String {
+        switch self {
+        case .wantToPlay: "Want to Play"
+        case .playing: "Playing"
+        case .stopped: "Stopped"
+        }
+    }
     var symbol: String {
         switch self {
-        case .wishlist: "bookmark"
+        case .wantToPlay: "bookmark"
         case .playing: "gamecontroller"
-        case .completed: "checkmark.circle"
+        case .stopped: "stop.circle"
         }
     }
 }
 
 @Model
 final class SavedGame {
-    @Attribute(.unique) var rawgID: Int
+    @Attribute(.unique, originalName: "rawgID") var gameID: Int
     var name: String
     var imageURL: String?
-    var rating: Double?
+    var shortDescription: String?
+    var gameURL: String?
+    var publisher: String?
+    var developer: String?
     var genreNames: [String]
     var platformNames: [String]
     var released: String?
     var metacritic: Int?
     var statusRaw: String?
     var isFavorite: Bool
+    var personalRating: Int?
     var dateAdded: Date
 
     var status: LibraryStatus? {
-        get { statusRaw.flatMap(LibraryStatus.init(rawValue:)) }
+        get {
+            switch statusRaw {
+            case "wishlist": .wantToPlay
+            case "completed": .stopped
+            default: statusRaw.flatMap(LibraryStatus.init(rawValue:))
+            }
+        }
         set { statusRaw = newValue?.rawValue }
     }
     init(game: Game) {
-        rawgID = game.id
+        gameID = game.id
         name = game.name
         imageURL = game.backgroundImage
-        rating = game.rating
-        genreNames = game.genres?.map(\.name) ?? []
-        platformNames = game.platforms?.map(\.platform.name) ?? []
-        released = game.released
-        metacritic = game.metacritic
+        shortDescription = game.shortDescription
+        gameURL = game.gameURL
+        publisher = game.publisher
+        developer = game.developer
+        genreNames = game.genre.map { [$0] } ?? []
+        platformNames = game.platform.map { [$0] } ?? []
+        released = game.releaseDate
+        metacritic = nil
         isFavorite = false
+        personalRating = nil
         dateAdded = .now
     }
     var game: Game {
-        Game(id: rawgID, name: name, backgroundImage: imageURL, rating: rating,
-             released: released, metacritic: metacritic,
-             platforms: platformNames.enumerated().map { GamePlatform(platform: NamedResource(id: $0.offset, name: $0.element)) },
-             genres: genreNames.enumerated().map { NamedResource(id: $0.offset, name: $0.element) })
+        Game(id: gameID, title: name, thumbnail: imageURL, shortDescription: shortDescription,
+             gameURL: gameURL, genre: genreNames.first, platform: platformNames.first,
+             publisher: publisher, developer: developer, releaseDate: released,
+             freeToGameProfileURL: nil)
     }
 }

@@ -7,7 +7,7 @@ struct SearchResultRow: View {
             GameArtwork(url: game.backgroundImage).frame(width: 88, height: 94).clipShape(RoundedRectangle(cornerRadius: 14))
             VStack(alignment: .leading, spacing: 7) {
                 Text(game.name).font(.headline).lineLimit(2)
-                Label(game.ratingText, systemImage: "star.fill").font(.caption.bold()).foregroundStyle(.orange)
+                Label(game.genre ?? "Free-to-play", systemImage: "tag.fill").font(.caption.bold()).foregroundStyle(VaultTheme.accent)
                 Text(game.platformNames).font(.caption).foregroundStyle(.secondary).lineLimit(2)
             }
             Spacer(minLength: 0)
