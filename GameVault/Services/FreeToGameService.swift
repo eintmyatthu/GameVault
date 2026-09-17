@@ -11,7 +11,7 @@ enum FreeToGameError: LocalizedError {
         case .notFound: "No matching free-to-play games were found."
         case .http(let code): "FreeToGame could not complete the request (\(code)). Please try again."
         case .decoding: "We couldn't read FreeToGame's response. Please try again later."
-        case .offline: "We couldn't connect to FreeToGame. Check your internet connection and retry. Your backlog and journal are still available."
+        case .offline: "We couldn't connect to FreeToGame. Check your internet connection and retry. Your library and profile are still available."
         case .network: "The FreeToGame request failed. Please try again."
         }
     }

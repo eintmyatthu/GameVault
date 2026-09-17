@@ -15,7 +15,7 @@ struct LibraryView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 24) {
-                PageHeading(eyebrow: "YOUR COLLECTION", title: "My Backlog", subtitle: "Track what you want to play, are playing, or stopped.").padding(.horizontal, 20)
+                PageHeading(eyebrow: "YOUR COLLECTION", title: "My Library", subtitle: "Track what you want to play, are playing, or stopped.").padding(.horizontal, 20)
                 Button {
                     pickedGame = savedGames.filter { $0.status == .wantToPlay }.randomElement()
                     showingPicker = true
@@ -33,7 +33,7 @@ struct LibraryView: View {
                     }.padding(.horizontal, 20)
                 }.scrollIndicators(.hidden)
                 if games.isEmpty {
-                    EmptyStateView(symbol: "square.stack.3d.up", title: "\(selectedStatus?.title ?? "Your backlog") starts here", message: "Discover a game, open its details, and add it to your backlog.")
+                    EmptyStateView(symbol: "square.stack.3d.up", title: "\(selectedStatus?.title ?? "Your library") starts here", message: "Discover a game, open its details, and add it to your library.")
                 } else {
                     ForEach(LibraryStatus.allCases) { status in
                         let section = games.filter { $0.status == status }
@@ -52,14 +52,14 @@ struct LibraryView: View {
                     }
                 }
             }.padding(.bottom, 24)
-        }.background(VaultTheme.background).navigationTitle("Backlog").navigationBarTitleDisplayMode(.inline)
-            .confirmationDialog("Remove \(pendingRemoval?.name ?? "game") from your backlog?", isPresented: Binding(get: { pendingRemoval != nil }, set: { if !$0 { pendingRemoval = nil } }), titleVisibility: .visible) {
-                Button("Remove from Backlog", role: .destructive) {
+        }.background(VaultTheme.background).navigationTitle("Library").navigationBarTitleDisplayMode(.inline)
+            .confirmationDialog("Remove \(pendingRemoval?.name ?? "game") from your library?", isPresented: Binding(get: { pendingRemoval != nil }, set: { if !$0 { pendingRemoval = nil } }), titleVisibility: .visible) {
+                Button("Remove from Library", role: .destructive) {
                     if let saved = pendingRemoval { model.removeFromLibrary(saved, in: context) }
                     pendingRemoval = nil
                 }
                 Button("Cancel", role: .cancel) { pendingRemoval = nil }
-            } message: { Text("Its personal rating and journal entries will be preserved.") }
+            } message: { Text("Its personal rating and favorite status will be preserved.") }
             .alert("Couldn't save change", isPresented: Binding(get: { model.errorMessage != nil }, set: { if !$0 { model.errorMessage = nil } })) {
                 Button("OK", role: .cancel) { model.errorMessage = nil }
             } message: { Text(model.errorMessage ?? "Please try again.") }

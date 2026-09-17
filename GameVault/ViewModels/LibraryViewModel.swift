@@ -17,7 +17,7 @@ final class LibraryViewModel {
             if existing == nil { context.insert(saved) }
             if let status { saved.status = status }
             if toggleFavorite { saved.isFavorite.toggle() }
-            let message = toggleFavorite ? (saved.isFavorite ? "Added to favorites" : "Removed from favorites") : "Saved to \(status?.title ?? "backlog")"
+            let message = toggleFavorite ? (saved.isFavorite ? "Added to favorites" : "Removed from favorites") : "Saved to \(status?.title ?? "library")"
             if saved.status == nil && !saved.isFavorite && saved.personalRating == nil { context.delete(saved) }
             try context.save()
             feedback = message
@@ -31,7 +31,7 @@ final class LibraryViewModel {
         if !saved.isFavorite && saved.personalRating == nil { context.delete(saved) }
         do {
             try context.save()
-            feedback = "Removed from backlog"
+            feedback = "Removed from library"
         } catch {
             context.rollback()
             errorMessage = "The game couldn't be removed. Please try again."

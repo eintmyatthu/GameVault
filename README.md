@@ -1,6 +1,6 @@
 # EHMGameShelf
 
-EHMGameShelf is a native iOS application for discovering free-to-play games, organizing a personal backlog, rating games, and recording play experiences.
+EHMGameShelf is a native iOS application for discovering free-to-play games, organizing a personal library, rating games, and viewing a player profile.
 
 ## Team
 
@@ -13,22 +13,22 @@ EHMGameShelf is a native iOS application for discovering free-to-play games, org
 - **Discover:** Browse popular, newly released, and alphabetical free-to-play games.
 - **Search and filters:** Search by title, filter by genre and PC/browser platform, and sort by popularity, release date, name, or relevance.
 - **Game details:** Read descriptions and metadata, swipe through screenshots, view minimum requirements, and open the official game page.
-- **My Backlog:** Save games as Want to Play, Playing, or Stopped; change status or remove a game later.
+- **My Library:** Save games as Want to Play, Playing, or Stopped; change status or remove a game later.
 - **Personal ratings:** Set, update, or remove a one-to-five-star rating.
-- **Play Journal:** Create, edit, and delete dated entries associated with games in the backlog.
+- **Player profile:** See collection totals, favorite games, play-status counts, and favorite genres at a glance.
 - **Pick Tonight's Game:** Randomly select a Want to Play title, view its details, choose again, or move it to Playing.
-- **Local persistence:** Backlog statuses, ratings, favorites, and journal entries remain available after relaunch.
+- **Local persistence:** Library statuses, ratings, favorites, and profile settings remain available after relaunch.
 
 ## Application structure
 
-The four tabs are Discover, Search, Backlog, and Journal. Selecting a game opens its detail screen.
+The four tabs are Discover, Search, Library, and Profile. Selecting a game opens its detail screen.
 
 ```text
 GameVault/
   Models/          FreeToGame DTOs and SwiftData records
   Services/        FreeToGame URLSession client
   ViewModels/      Discovery, search, details, and persistence logic
-  Views/           Discover, Search, Detail, Library/Backlog, and Journal UI
+  Views/           Discover, Search, Detail, Library, and Profile UI
   Components/      Shared visual and state components
 ```
 

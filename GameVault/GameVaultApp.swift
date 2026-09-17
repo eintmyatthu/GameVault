@@ -20,7 +20,7 @@ struct EHMGameShelfApp: App {
     }
     private func openStorage() {
         do {
-            container = try ModelContainer(for: SavedGame.self, JournalEntry.self)
+            container = try ModelContainer(for: SavedGame.self)
             storageError = nil
         } catch {
             // Never replace a failed persistent store with a silently empty in-memory one.

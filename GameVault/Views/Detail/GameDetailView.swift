@@ -82,7 +82,7 @@ struct GameDetailView: View {
 
     private var statusButton: some View {
         Button { showingStatuses = true } label: {
-            Label(saved?.status?.title ?? "Add to Backlog", systemImage: saved?.status?.symbol ?? "plus")
+            Label(saved?.status?.title ?? "Add to Library", systemImage: saved?.status?.symbol ?? "plus")
                 .font(.headline).padding(.vertical, 8)
         }.buttonStyle(.borderedProminent).controlSize(.large)
     }

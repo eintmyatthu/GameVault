@@ -20,7 +20,7 @@ struct LibraryGameRow: View {
                         Button(status.title, systemImage: status.symbol) { changeStatus(status) }
                     }
                     Divider()
-                    Button("Remove from Backlog", systemImage: "trash", role: .destructive, action: remove)
+                    Button("Remove from Library", systemImage: "trash", role: .destructive, action: remove)
                 } label: {
                     Image(systemName: "ellipsis").frame(width: 44, height: 44).contentShape(Rectangle())
                 }.accessibilityLabel("Manage \(saved.name)")
