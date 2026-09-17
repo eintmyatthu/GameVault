@@ -6,9 +6,9 @@ enum LibraryStatus: String, CaseIterable, Identifiable {
     var id: String { rawValue }
     var title: String {
         switch self {
-        case .wantToPlay: "Want to Play"
+        case .wantToPlay: "Wishlist"
         case .playing: "Playing"
-        case .stopped: "Stopped"
+        case .stopped: "Complete"
         }
     }
     var symbol: String {

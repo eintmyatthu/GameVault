@@ -15,7 +15,7 @@ struct LibraryView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 24) {
-                PageHeading(eyebrow: "YOUR COLLECTION", title: "My Library", subtitle: "Track what you want to play, are playing, or stopped.").padding(.horizontal, 20)
+                PageHeading(eyebrow: "YOUR COLLECTION", title: "My Library", subtitle: "Track games on your wishlist, games you are playing, or games you have completed.").padding(.horizontal, 20)
                 Button {
                     pickedGame = savedGames.filter { $0.status == .wantToPlay }.randomElement()
                     showingPicker = true
@@ -98,7 +98,7 @@ private struct TonightPickerView: View {
                     Button { pickAgain() } label: { Label("Choose Again", systemImage: "arrow.clockwise") }
                         .disabled(candidates.count < 2)
                 } else {
-                    EmptyStateView(symbol: "dice", title: "Nothing to pick yet", message: "Add a game to Want to Play first.")
+                    EmptyStateView(symbol: "dice", title: "Nothing to pick yet", message: "Add a game to your Wishlist first.")
                 }
                 Spacer()
             }.padding(24).navigationTitle("Pick a Game").navigationBarTitleDisplayMode(.inline)

@@ -3,7 +3,7 @@ import SwiftData
 
 struct ProfileView: View {
     @Query(sort: \SavedGame.dateAdded, order: .reverse) private var games: [SavedGame]
-    @AppStorage("profile.playerName") private var playerName = "Player One"
+    @AppStorage("profile.playerName") private var playerName = "Mi Hsu"
     @State private var showingSettings = false
     @State private var showingAbout = false
 
@@ -35,7 +35,12 @@ struct ProfileView: View {
             ProfileSettingsView(playerName: $playerName)
         }
         .sheet(isPresented: $showingAbout) {
-            AboutGameVaultView()
+            AboutEHMGameShelfView()
+        }
+        .task {
+            if playerName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || playerName == "Player One" {
+                playerName = "Mi Hsu"
+            }
         }
     }
 
@@ -48,7 +53,7 @@ struct ProfileView: View {
                 .accessibilityHidden(true)
 
             VStack(alignment: .leading, spacing: 6) {
-                Text(playerName.isEmpty ? "Player One" : playerName)
+                Text(playerName.isEmpty ? "Mi Hsu" : playerName)
                     .font(.title.bold())
                 Text("Level \(level)")
                     .font(.headline)
@@ -73,7 +78,7 @@ struct ProfileView: View {
         LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 8), count: 4), spacing: 8) {
             profileStat(title: "Games", count: libraryGames.count, symbol: "gamecontroller.fill")
             profileStat(title: "Favorites", count: favorites.count, symbol: "heart.fill")
-            profileStat(title: "Want to Play", count: games.filter { $0.status == .wantToPlay }.count, symbol: "bookmark.fill")
+            profileStat(title: "Wishlist", count: games.filter { $0.status == .wantToPlay }.count, symbol: "bookmark.fill")
             profileStat(title: "Playing", count: games.filter { $0.status == .playing }.count, symbol: "play.circle.fill")
         }
         .padding(14)
@@ -119,7 +124,7 @@ struct ProfileView: View {
         VStack(spacing: 0) {
             profileRow(title: "Settings", symbol: "gearshape") { showingSettings = true }
             Divider().padding(.leading, 56)
-            profileRow(title: "About GameVault", symbol: "info.circle") { showingAbout = true }
+            profileRow(title: "EHM GameShelf", symbol: "info.circle") { showingAbout = true }
             Divider().padding(.leading, 56)
             Link(destination: URL(string: "https://www.freetogame.com")!) {
                 rowLabel(title: "Data source: FreeToGame", symbol: "network")
@@ -206,7 +211,7 @@ private struct ProfileSettingsView: View {
     }
 }
 
-private struct AboutGameVaultView: View {
+private struct AboutEHMGameShelfView: View {
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
@@ -215,7 +220,7 @@ private struct AboutGameVaultView: View {
                 Image(systemName: "gamecontroller.fill")
                     .font(.system(size: 64))
                     .foregroundStyle(VaultTheme.accent)
-                Text("GameVault")
+                Text("EHM GameShelf")
                     .font(.largeTitle.bold())
                 Text("Discover free-to-play games, build a personal library, and see your tastes take shape.")
                     .multilineTextAlignment(.center)

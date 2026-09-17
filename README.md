@@ -13,10 +13,10 @@ EHMGameShelf is a native iOS application for discovering free-to-play games, org
 - **Discover:** Browse popular, newly released, and alphabetical free-to-play games.
 - **Search and filters:** Search by title, filter by genre and PC/browser platform, and sort by popularity, release date, name, or relevance.
 - **Game details:** Read descriptions and metadata, swipe through screenshots, view minimum requirements, and open the official game page.
-- **My Library:** Save games as Want to Play, Playing, or Stopped; change status or remove a game later.
+- **My Library:** Save games as Wishlist, Playing, or Complete; change status or remove a game later.
 - **Personal ratings:** Set, update, or remove a one-to-five-star rating.
 - **Player profile:** See collection totals, favorite games, play-status counts, and favorite genres at a glance.
-- **Pick Tonight's Game:** Randomly select a Want to Play title, view its details, choose again, or move it to Playing.
+- **Pick Tonight's Game:** Randomly select a Wishlist title, view its details, choose again, or move it to Playing.
 - **Local persistence:** Library statuses, ratings, favorites, and profile settings remain available after relaunch.
 
 ## Application structure
