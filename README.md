@@ -1,12 +1,12 @@
-# EHMGameShelf
+# EHM GameShelf
 
-EHMGameShelf is a native iOS application for discovering free-to-play games, organizing a personal library, rating games, and viewing a player profile.
+EHM GameShelf is a native iOS app for discovering free-to-play games, organizing a personal library, rating games, and viewing a player profile.
 
 ## Team
 
 - Eaint Myat Thu — 6726125
 - Htin Aung Lynn — 6726116
-- Mi Hsu Myat Win Myit — 6726115
+- Mi Hsu Myat Win Myint — 6726115
 
 ## Features
 
@@ -15,7 +15,7 @@ EHMGameShelf is a native iOS application for discovering free-to-play games, org
 - **Game details:** Read descriptions and metadata, swipe through screenshots, view minimum requirements, and open the official game page.
 - **My Library:** Save games as Wishlist, Playing, or Complete; change status or remove a game later.
 - **Personal ratings:** Set, update, or remove a one-to-five-star rating.
-- **Player profile:** See collection totals, favorite games, play-status counts, and favorite genres at a glance.
+- **Player profile:** See collection totals, favorite counts, play-status counts, and favorite genres at a glance.
 - **Pick Tonight's Game:** Randomly select a Wishlist title, view its details, choose again, or move it to Playing.
 - **Local persistence:** Library statuses, ratings, favorites, and profile settings remain available after relaunch.
 
@@ -32,7 +32,7 @@ GameVault/
   Components/      Shared visual and state components
 ```
 
-## Technology
+## Technologies
 
 - Swift and SwiftUI
 - SwiftData
@@ -45,8 +45,8 @@ The app uses the public [FreeToGame API](https://www.freetogame.com/api-doc). No
 ## Run
 
 1. Open `GameVault.xcodeproj` in Xcode 16 or newer.
-2. Select the GameVault scheme and an iOS simulator or device.
-3. Press **Command-R**.
+2. Select the **GameVault** scheme and an iOS simulator or device.
+3. Press **⌘R**.
 
 No packages, API keys, backend, or database setup are required.
 
